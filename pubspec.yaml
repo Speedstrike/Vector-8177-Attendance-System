@@ -1,0 +1,38 @@
+name: attendance
+
+description: The attendace app for FRC team Vector 8177, complete with a Firebase backend and a Flutter frontend, as well as festures to view attendance statistics, add new students locally, and more.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  firebase_core: ^2.10.0
+  cloud_firestore: ^4.17.5
+  intl: ^0.18.0
+  fl_chart: ^0.40.0
+  logger: ^2.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+  - family: NotoSans
+    fonts:
+      - asset: lib/fonts/NotoSans/static/NotoSans-Regular.ttf
+      - asset: lib/fonts/NotoSans/static/NotoSans-Bold.ttf
+      - asset: lib/fonts/NotoSans/static/NotoSans-Italic.ttf
+
+
