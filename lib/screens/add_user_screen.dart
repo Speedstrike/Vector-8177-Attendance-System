@@ -22,8 +22,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:attendance/constants.dart';
 import 'package:attendance/student.dart';
+import 'package:attendance/constants.dart';
 
 class AddStudentScreen extends StatefulWidget {
   const AddStudentScreen({super.key});
@@ -75,14 +75,14 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                   const SizedBox(height: 20),
                   Row(
                     children: [
-                      const Expanded(
+                      Expanded(
                         child: Text(
-                          Constants.addNewMemberNameField,
-                          style: TextStyle(
+                          Constants.studentFields.elementAt(0),
+                          style: const TextStyle(
                             color: AppTheme.secondary,
                             fontSize: Constants.regularFontSize
-                          ),
-                        ),
+                          )
+                        )
                       ),
                       Expanded(
                         flex: 2,
@@ -102,14 +102,14 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                   const SizedBox(height: 10),
                   Row(
                     children: [
-                      const Expanded(
+                      Expanded(
                         child: Text(
-                          Constants.addNewMemberIDField,
-                          style: TextStyle(
+                          Constants.studentFields.elementAt(1),
+                          style: const TextStyle(
                             color: AppTheme.secondary,
-                            fontSize: Constants.regularFontSize,
-                          ),
-                        ),
+                            fontSize: Constants.regularFontSize
+                          )
+                        )
                       ),
                       Expanded(
                         flex: 2,
@@ -120,7 +120,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                           ],
                           style: const TextStyle(color: AppTheme.light),
                           decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
+                            border: OutlineInputBorder()
                           )
                         )
                       )
@@ -130,10 +130,10 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                   const SizedBox(height: 10),
                   Row(
                     children: [
-                      const Expanded(
+                      Expanded(
                         child: Text(
-                          Constants.addNewMemberGradeField,
-                          style: TextStyle(
+                          Constants.studentFields.elementAt(2),
+                          style: const TextStyle(
                             color: AppTheme.secondary,
                             fontSize: Constants.regularFontSize
                           )
@@ -155,7 +155,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                               changeGradeSelection(value.first);
                             });
                           },
-                          showSelectedIcon: false,
+                          showSelectedIcon: false
                         )
                       )
                     ]

@@ -19,9 +19,9 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:flutter/material.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Constants {
   static CollectionReference database = FirebaseFirestore.instance.collection('students');
@@ -41,10 +41,9 @@ class Constants {
   static const String checkInButton = 'Check in';
   static const String checkOutButton = 'Check out';
 
+  static const List<String> studentFields = ['Name', 'ID number', 'Grade level'];
+
   static const String addNewMemberHeading = 'Add new student';
-  static const String addNewMemberNameField = 'Name';
-  static const String addNewMemberIDField = 'ID number';
-  static const String addNewMemberGradeField = 'Grade level';
   static const String addNewMemberAddButton = 'Add student';
   static const List<ButtonSegment<int>> gradeOptions = [
     ButtonSegment(
@@ -64,6 +63,11 @@ class Constants {
       label: Text('12th grade')
     ),
   ];
+
+  static const String studentStatisticsHeading = 'Attendance statistics';
+  static const List<String> dataTableHeaders = ['Student name', 'Total hours', 'Meetings attended', 'Median hours', 'Last meeting'];
+  static const double dataTableColumnWidthA = 200;
+  static const double dataTableColumnWidthB = 130;
 }
 
 class AppTheme {

@@ -21,6 +21,8 @@
 // SOFTWARE.
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:intl/intl.dart';
+
 class Student {
   final String name;
   final int? id;
@@ -31,7 +33,7 @@ class Student {
     required this.name,
     required this.id,
     required this.grade,
-    required this.attendance
+    required this.attendance,
   });
 
   factory Student.fromFirestore(DocumentSnapshot doc) {
@@ -44,17 +46,47 @@ class Student {
 
     return Student(
       name: data['name'] ?? '',
-      id: data['id'] ?? '',
-      grade: data['grade'] ?? '',
-      attendance: attendanceData
+      id: data['id'] ?? 0,
+      grade: data['grade'] ?? 0,
+      attendance: attendanceData,
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> calculateAttendanceStats() {
+    if (attendance.isEmpty) {
+      return {
+        'totalHours': 0,
+        'numberOfMeetings': 0,
+        'medianHours': 0,
+        'lastMeetingDate': null,
+      };
+    }
+
+    final List<int> hoursList = attendance.values.toList();
+    final List<DateTime> datesList = attendance.keys.map((dateString) => DateFormat('MM-dd-yyyy').parse(dateString)).toList();
+
+    final totalHours = hoursList.reduce((a, b) => a + b);
+    final numberOfMeetings = hoursList.length;
+
+    hoursList.sort();
+    double medianHours = 0;
+    if (hoursList.isNotEmpty) {
+      int middle = hoursList.length ~/ 2;
+      if (hoursList.length % 2 == 0) {
+        medianHours = (hoursList[middle - 1] + hoursList[middle]) / 2;
+      } 
+      else {
+        medianHours = hoursList[middle] + 0.0;
+      }
+    }
+
+    final lastMeetingDate = datesList.isNotEmpty? datesList.last : null;
+
     return {
-      'name': name,
-      'grade': grade,
-      'attendance': attendance
+      'totalHours': totalHours,
+      'numberOfMeetings': numberOfMeetings,
+      'medianHours': medianHours,
+      'lastMeetingDate': lastMeetingDate,
     };
   }
 }

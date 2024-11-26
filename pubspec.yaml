@@ -16,7 +16,7 @@ dependencies:
   firebase_core: ^2.10.0
   cloud_firestore: ^4.17.5
   intl: ^0.18.0
-  fl_chart: ^0.40.0
+  fl_chart: ^0.67.0
   logger: ^2.5.0
 
 dev_dependencies:
