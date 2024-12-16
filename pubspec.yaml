@@ -1,6 +1,6 @@
 name: attendance
 
-description: The attendace app for FRC team Vector 8177, complete with a Firebase backend and a Flutter frontend, as well as festures to view attendance statistics, add new students locally, and more.
+description: The attendance app for FRC team Vector 8177, complete with a Firebase backend and a Flutter frontend, as well as features to view attendance statistics, add new students locally, and more.
 
 publish_to: 'none'
 
