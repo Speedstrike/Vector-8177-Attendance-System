@@ -20,7 +20,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:attendance/student.dart';
 import 'package:attendance/constants.dart';
@@ -34,7 +33,6 @@ class AddStudentScreen extends StatefulWidget {
 
 class _AddStudentScreenState extends State<AddStudentScreen> {
   TextEditingController nameFieldController = TextEditingController();
-  TextEditingController idFieldController = TextEditingController();
   int gradeDropdownValue = -1;
 
   void changeGradeSelection(int newGrade) {
@@ -50,8 +48,8 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
       child: Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 9 / 24,
-            width: MediaQuery.of(context).size.width / 2,
+            height: MediaQuery.of(context).size.height * 7 / 24,
+            width: MediaQuery.of(context).size.width * 5 / 12,
             decoration: BoxDecoration(
               color: AppTheme.darkB,
               borderRadius: BorderRadius.circular(20)
@@ -98,34 +96,6 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                       )
                     ]
                   ),
-
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          Constants.studentFields.elementAt(1),
-                          style: const TextStyle(
-                            color: AppTheme.secondary,
-                            fontSize: Constants.regularFontSize
-                          )
-                        )
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: TextField(
-                          controller: idFieldController,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          style: const TextStyle(color: AppTheme.light),
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder()
-                          )
-                        )
-                      )
-                    ]
-                  ),
                   
                   const SizedBox(height: 10),
                   Row(
@@ -166,18 +136,16 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                       alignment: Alignment.center,
                       child: TextButton(
                         onPressed: () {
-                          if (nameFieldController.text.isNotEmpty && idFieldController.text.isNotEmpty && gradeDropdownValue != -1) {
+                          if (nameFieldController.text.isNotEmpty && gradeDropdownValue != -1) {
                             final newStudent = Student(
                               name: nameFieldController.text,
                               grade: gradeDropdownValue,
-                              id: int.parse(idFieldController.text),
                               attendance: {}
                             );
 
                             try {
                               Constants.database.doc(newStudent.name).set({
                                 'name': newStudent.name,
-                                'id': newStudent.id,
                                 'grade': newStudent.grade,
                                 'attendance': {}
                               });
@@ -189,7 +157,6 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
                             catch (_) {}
 
                             nameFieldController.clear();
-                            idFieldController.clear();
                             gradeDropdownValue = -1;
                           }
                         },
@@ -219,7 +186,6 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
                 nameFieldController.clear();
-                idFieldController.clear();
                 gradeDropdownValue = -1;
               }
             )

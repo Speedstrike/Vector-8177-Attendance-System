@@ -25,13 +25,11 @@ import 'package:intl/intl.dart';
 
 class Student {
   final String name;
-  final int? id;
   final int? grade;
   final Map<String, int> attendance;
 
   Student({
     required this.name,
-    required this.id,
     required this.grade,
     required this.attendance,
   });
@@ -46,7 +44,6 @@ class Student {
 
     return Student(
       name: data['name'] ?? '',
-      id: data['id'] ?? 0,
       grade: data['grade'] ?? 0,
       attendance: attendanceData,
     );
